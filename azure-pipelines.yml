@@ -7,16 +7,15 @@ variables:
 stages:
 - stage: 'Build'
   displayName: 'Build the web application'
-  jobs:
+  jobs: 
   - job: 'Build'
     displayName: 'Build job'
     pool:
       vmImage: 'ubuntu-20.04'
-    #  name: 'Default'
       demands:
       - npm
 
-    variables: 
+    variables:
       wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
       dotnetSdkVersion: '5.x'
 
@@ -65,6 +64,7 @@ stages:
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
+
 - stage: 'Deploy'
   displayName: 'Deploy the web application'
   dependsOn: Build
